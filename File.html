@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aplikasi Yasin & Tahlil Offline Lengkap</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #fdfbf7;
+            margin: 0;
+            padding: 0;
+            color: #111;
+        }
+
+        /* --- HALAMAN MENU UTAMA --- */
+        #home-page {
+            max-width: 500px;
+            margin: 60px auto;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .app-title {
+            font-size: 28px;
+            font-weight: bold;
+            color: #2c3e50;
+            margin-bottom: 8px;
+        }
+
+        .app-subtitle {
+            font-size: 14px;
+            color: #7f8c8d;
+            margin-bottom: 35px;
+        }
+
+        .menu-btn {
+            display: block;
+            width: 100%;
+            background: #ffffff;
+            border: 1.5px solid #d4ac0d;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 15px;
+            text-align: left;
+            cursor: pointer;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.03);
+            transition: all 0.2s ease;
+            box-sizing: border-box;
+        }
+
+        .menu-btn:active {
+            transform: scale(0.98);
+            background: #fcf8e3;
+        }
+
+        .menu-title {
+            font-size: 18px;
+            font-weight: bold;
+            color: #2c3e50;
+            margin-bottom: 5px;
+        }
+
+        .menu-desc {
+            font-size: 13px;
+            color: #666;
+        }
+
+        /* --- HALAMAN KONTEN --- */
+        .content-page {
+            display: none;
+            max-width: 650px;
+            margin: 0 auto;
+            background: #ffffff;
+            padding: 15px;
+            min-height: 100vh;
+            box-sizing: border-box;
+            border-left: 1px solid #e0dcd0;
+            border-right: 1px solid #e0dcd0;
+        }
+
+        .top-bar {
+            text-align: center;
+            border-bottom: 2px solid #bdc3c7;
+            padding-bottom: 10px;
+            margin-bottom: 15px;
+            position: sticky;
+            top: 0;
+            background: #ffffff;
+            z-index: 10;
+        }
+
+        .page-header-title {
+            font-size: 20px;
+            font-weight: bold;
+            color: #2c3e50;
+        }
+
+        /* --- GAYA TEKS ARAB --- */
+        .arabic-body {
+            font-family: 'Traditional Arabic', 'Amiri', 'Times New Roman', serif;
+            font-size: 24px;
+            text-align: justify;
+            direction: rtl;
+            line-height: 2.3;
+            word-spacing: 1px;
+            padding-bottom: 30px;
+        }
+
+        .ayah-number {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 26px;
+            height: 26px;
+            border: 1.5px solid #d4ac0d;
+            border-radius: 50%;
+            font-size: 12px;
+            color: #b7950b;
+            margin: 0 3px;
+            vertical-align: middle;
+            font-family: 'Segoe UI', Tahoma, sans-serif;
+        }
+
+        .section-title {
+            text-align: center;
+            font-weight: bold;
+            font-size: 20px;
+            color: #27ae60;
+            margin: 30px 0 15px 0;
+            direction: ltr;
+            border-bottom: 1px dashed #d4ac0d;
+            padding-bottom: 5px;
+        }
+
+        .trans-note {
+            font-family: 'Segoe UI', Tahoma, sans-serif;
+            font-size: 13px;
+            color: #555;
+            text-align: left;
+            direction: ltr;
+            margin: 5px 0 15px 0;
+            background: #fdfbf7;
+            padding: 8px;
+            border-radius: 5px;
+            border-left: 3px solid #27ae60;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 1. HALAMAN MENU UTAMA -->
+    <div id="home-page">
+        <div class="app-title">Yasin & Tahlil Digital</div>
+        <div class="app-subtitle">Aplikasi Islami 100% Offline</div>
+
+        <div class="menu-btn" onclick="openPage('yasin-page')">
+            <div class="menu-title">📖 Surat Yasin (Ayat 1 - 83)</div>
+            <div class="menu-desc">Bacaan lengkap teks Arab berformat mushaf padat.</div>
+        </div>
+
+        <div class="menu-btn" onclick="openPage('tahlil-page')">
+            <div class="menu-title">🤲 Bacaan Tahlil Lengkap</div>
+            <div class="menu-desc">Tawasul, Surah Pendek, Kalimat Tahlil, & Doa Arwah.</div>
+        </div>
+    </div>
+
+    <!-- 2. HALAMAN SURAT YASIN (LENGKAP 1-83) -->
+    <div id="yasin-page" class="content-page">
+        <div class="top-bar">
+            <div class="page-header-title">Surat Yasin</div>
+        </div>
+        
+        <div style="text-align: center; font-size: 24px; font-weight: bold; margin-bottom: 8px; font-family: 'Traditional Arabic', serif;">سُورَةُ يسٓ</div>
+        <div style="text-align: center; font-size: 24px; color: #27ae60; margin-bottom: 20px; font-family: 'Traditional Arabic', serif;">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</div>
+
+        <div class="arabic-body">
+            يسٓ <span class="ayah-number">1</span> 
+            وَالْقُرْآنِ الْحَكِيمِ <span class="ayah-number">2</span> 
+            إِنَّكَ لَمِنَ الْمُرْسَلِينَ <span class="ayah-number">3</span> 
+            عَلَىٰ صِرَاطٍ مَّسْتَقِيمٍ <span class="ayah-number">4</span> 
+            تَنزِيلَ الْعَزِيزِ الرَّحِيمِ <span class="ayah-number">5</span> 
+            لِتُنذِرَ قَوْمًا مَّا أُنذِرَ آبَاؤُهُمْ فَهُمْ غَافِلُونَ <span class="ayah-number">6</span> 
+            لَقَدْ حَقَّ الْقَوْلُ عَلَىٰ أَكْثَرِهِمْ فَهُمْ لَا يُؤْمِنُونَ <span class="ayah-number">7</span> 
+            إِنَّا جَعَلْنَا فِي أَعْنَاقِهِمْ أَغْلَالًا فَهِيَ إِلَى الْأَذْقَانِ فَهُم مُّقْمَحُونَ <span class="ayah-number">8</span> 
+            وَجَعَلْنَا مِن بَيْنِ أَيْدِيهِمْ سَدًّا وَمِنْ خَلْفِهِمْ سَدًّا فَأَغْشَيْنَاهُمْ فَهُمْ لَا يُبْصِرُونَ <span class="ayah-number">9</span> 
+            وَسَوَاءٌ عَلَيْهِمْ أَأَنذَرْتَهُمْ أَمْ لَمْ تُنذِرْهُمْ لَا يُؤْمِنُونَ <span class="ayah-number">10</span> 
+            إِنَّمَا تُنذِرُ مَنِ اتَّبَعَ الذِّكْرَ وَخَشِيَ الرَّحْمَٰنَ بِالْغَيْبِ ۖ فَبَشِّرْهُ بِمَغْفِرَةٍ وَأَجْرٍ كَرِيمٍ <span class="ayah-number">11</span> 
+            إِنَّا نَحْنُ نُحْيِي الْمَوْتَىٰ وَنَكْتُبُ مَا قَدَّمُوا وَآثَارَهُمْ ۚ وَكُلَّ شَيْءٍ أَحْصَيْنَاهُ فِي إِمَامٍ مُّبِينٍ <span class="ayah-number">12</span> 
+            وَاضْرِبْ لَهُم مَّثَلًا أَصْحَابَ الْقَرْيَةِ إِذْ جَاءَهَا الْمُرْسَلُونَ <span class="ayah-number">13</span> 
+            إِذْ أَرْسَلْنَا إِلَيْهِمُ اثْنَيْنِ فَكَذَّبُوهُمَا فَعَزَّزْنَا بِثَالِثٍ فَقَالُوا إِنَّا إِلَيْكُم مُّرْسَلُونَ <span class="ayah-number">14</span> 
+            قَالُوا مَا أَنتُمْ إِلَّا بَشَرٌ مِّثْلُنَا وَمَا أَنزَلَ الرَّحْمَٰنُ مِن شَيْءٍ إِنْ أَنتُمْ إِلَّا تَكْذِبُونَ <span class="ayah-number">15</span> 
+            قَالُوا رَبُّنَا يَعْلَمُ إِنَّا إِلَيْكُمْ لَمُرْسَلُونَ <span class="ayah-number">16</span> 
+            وَمَا عَلَيْنَا إِلَّا الْبَلَاغُ الْمُبِينُ <span class="ayah-number">17</span> 
+            قَالُوا إِنَّا تَطَيَّرْنَا بِكُمْ ۖ لَئِن لَّمْ تَنتَهُوا لَنَرْجُمَنَّكُمْ وَلَيَمَسَّنَّكُم مِّنَّا عَذَابٌ أَلِيمٌ <span class="ayah-number">18</span> 
+            قَالُوا طَائِرُكُم مَّعَكُمْ ۚ أَئِن ذُكِّرْتُم ۚ بَلْ أَنتُمْ قَوْمٌ مُّسْرِفُونَ <span class="ayah-number">19</span> 
+            وَجَاءَ مِنْ أَقْصَى الْمَدِينَةِ رَجُلٌ يَسْعَىٰ قَالَ يَا قَوْمِ اتَّبِعُوا الْمُرْسَلِينَ <span class="ayah-number">20</span> 
+            اتَّبِعُوا مَن لَّا يَسْأَلُكُمْ أَجْرًا وَهُم مُّهْتَدُونَ <span class="ayah-number">21</span> 
+            وَمَا لِي لَا أَعْبُدُ الَّذِي فَطَرَني وَإِلَيْهِ تُرْجَعُونَ <span class="ayah-number">22</span> 
+            أَأَتَّخِذُ مِن دُونِهِ آلِهَةً إِن يُرِدْنِ الرَّحْمَٰنُ بِضُرٍّ لَّا تُغْنِ عَنِّي شَفَاعَتُهُمْ شَيْئًا وَلَا يُنقِذُونِ <span class="ayah-number">23</span> 
+            إِنِّي إِذًا لَّفِي ضَلَالٍ مُّبِينٍ <span class="ayah-number">24</span> 
+            إِنِّي آمَنتُ بِرَبِّكُمْ فَاسْمَعُونِ <span class="ayah-number">25</span> 
+            قِيلَ ادْخُلِ الْجَنَّةَ ۖ قَالَ يَا لَيْتَ قَوْمِي يَعْلَمُونَ <span class="ayah-number">26</span> 
+            بِمَا غَفَرَ لِي رَبِّي وَجَعَلَنِي مِنَ الْمُكْرَمِينَ <span class="ayah-number">27</span> 
+            وَمَا أَنزَلْنَا عَلَىٰ قَوْمِهِ مِن بَعْدِهِ مِنْ جُندٍ مِّنَ السَّمَاءِ وَمَا كُنَّا مُنزِلِينَ <span class="ayah-number">28</span> 
+            إِن كَانَتْ إِلَّا صَيْحَةً وَاحِدَةً فَإِذَا هُمْ خَامِدُونَ <span class="ayah-number">29</span> 
+            يَا حَسْرَةً عَلَى الْعِبَادِ ۚ مَا يَأْتِيهِم مِّن رَّسُولٍ إِلَّا كَانُوا بِهِ يَسْتَهْزِئُونَ <span class="ayah-number">30</span> 
+            أَلَمْ يَرَوْا كَمْ أَهْلَكْنَا قَبْلَهُم مِّنَ الْقُرُونِ أَنَّهُمْ إِلَيْهِمْ لَا يَرْجِعُونَ <span class="ayah-number">31</span> 
+            وَإِن كُلٌّ لَّمَّا جَمِيعٌ لَّدَيْنَا مُحْضَرُونَ <span class="ayah-number">32</span> 
+            وَآيَةٌ لَّهُمُ الْأَرْضُ الْمَيْتَةُ أَحْيَيْنَاهَا وَأَخْرَجْنَا مِنْهَا حَبًّا فَمِنْهُ يَأْكُلُونَ <span class="ayah-number">33</span> 
+            وَجَعَلْنَا فِيهَا جَنَّاتٍ مِّن نَّخِيلٍ وَأَعْنَابٍ وَفَجَّرْنَا فِيهَا مِنَ الْعُيُونِ <span class="ayah-number">34</span> 
+            لِيَأْكُلُوا مِنْ ثَمَرِهِ وَمَا عَمِلَتْهُ أَيْدِيهِمْ ۖ أَفَلَا يَشْكُرُونَ <span class="ayah-number">35</span> 
+            سُبْحَانَ الَّذِي خَلَقَ الْأَزْوَاجَ كُلَّهَا مِمَّا تُنبِتُ الْأَرْضُ وَمِنْ أَنفُسِهِمْ وَمِمَّا لَا يَعْلَمُونَ <span class="ayah-number">36</span> 
+            وَآيَةٌ لَّهُمُ اللَّيْلُ نَسْلَخُ مِنْهُ النَّهَارَ فَإِذَا هُم مُّظْلِمُونَ <span class="ayah-number">37</span> 
+            وَالشَّمْسُ تَجْرِي لِمُسْتَقَرٍّ لَّهَا ۚ ذَلِكَ تَقْدِيرُ الْعَزِيزِ الْعَلِيمِ <span class="ayah-number">38</span> 
+            وَالْقَمَرَ قَدَّرْنَاهُ مَنَازِلَ حَتَّىٰ عَادَ كَالْعُرْجُونِ الْقَدِيمِ <span class="ayah-number">39</span> 
+            لَا الشَّمْسُ يَنبَغِي لَهَا أَن تُدْرِكَ الْقَمَرَ وَلَا اللَّيْلُ سَابِقُ النَّهَارِ ۚ وَكُلٌّ فِي فَلَكٍ يَسْبَحُونَ <span class="ayah-number">40</span> 
+            وَآيَةٌ لَّهُمْ أَنَّا حَمَلْنَا ذُرِّيَّتَهُمْ فِي الْفُلْكِ الْمَشْحُونِ <span class="ayah-number">41</span> 
+            وَخَلَقْنَا لَهُم مِّن مِّثْلِهِ مَا يَرْكَبُونَ <span class="ayah-number">42</span> 
+            وَإِن نَّشَأْ نُغْرِقْهُمْ فَلَا صَرِيخَ لَهُمْ وَلَا هُمْ يُنقَذُونَ <span class="ayah-number">43</span> 
+            إِلَّا رَحْمَةً مِّنَّا وَمَتَاعًا إِلَىٰ حِينٍ <span class="ayah-number">44</span> 
+            وَإِذَا قِيلَ لَهُمُ اتَّقُوا مَا بَيْنَ أَيْدِيكُمْ وَمَا خَلْفَكُمْ لَعَلَّكُمْ تُرْحَمُونَ <span class="ayah-number">45</span> 
+            وَمَا تَأْتِيهِم مِّنْ آيَةٍ مِّنْ آيَاتِ رَبِّهِمْ إِلَّا كَانُوا عَنْهَا مُعْرِضِينَ <span class="ayah-number">46</span> 
+            وَإِذَا قِيلَ لَهُمْ أَنفِقُوا مِمَّا رَزَقَكُمُ اللَّهُ قَالَ الَّذِينَ كَفَرُوا لِلَّذِينَ آمَنُوا أَنُطْعِمُ مَن لَّوْ يَشَاءُ اللَّهُ أَطْعَمَهُ إِنْ أَنتُمْ إِلَّا فِي ضَلَالٍ مُّبِينٍ <span class="ayah-number">47</span> 
+            وَيَقُولُونَ مَتَىٰ هَذَا الْوَعْدُ إِن كُنتُمْ صَادِقِينَ <span class="ayah-number">48</span> 
+            مَا يَنظُرُونَ إِلَّا صَيْحَةً وَاحِدَةً تَأْخُذُهُمْ وَهُمْ يَخِصِمُونَ <span class="ayah-number">49</span> 
+            فَلَا يَسْتَطِيعُونَ تَوْصِيَةً وَلَا إِلَىٰ أَهْلِهِمْ يَرْجِعُونَ <span class="ayah-number">50</span> 
+            وَنُفِخَ فِي الصُّورِ فَإِذَا هُم مِّنَ الْأَجْدَاثِ إِلَىٰ رَبِّهِمْ يَنسِلُونَ <span class="ayah-number">51</span> 
+            قَالُوا يَا وَيْلَنَا مَن بَعَثَنَا مَن مَّرْقَدِنَا ۜ ۗ هَذَا مَا وَعَدَ الرَّحْمَٰنُ وَصَدَقَ الْمُرْسَلُونَ <span class="ayah-number">52</span> 
+            إِن كَانَتْ إِلَّا صَيْحَةً وَاحِدَةً فَإِذَا هُمْ جَمِيعٌ لَّدَيْنَا مُحْضَرُونَ <span class="ayah-number">53</span> 
+            فَالْيَوْمَ لَا تُظْلَمُ نَفْسٌ شَيْئًا وَلَا تُجْزَوْنَ إِلَّا مَا كُنتُمْ تَعْمَلُونَ <span class="ayah-number">54</span> 
+            إِنَّ أَصْحَابَ الْجَنَّةِ الْيَوْمَ فِي شُغُلٍ فَاكِهُونَ <span class="ayah-number">55</span> 
+            هُمْ وَأَزْوَاجُهُمْ فِي ظِلَالٍ عَلَى الْأَرَائِكِ مُتَّكِئُونَ <span class="ayah-number">56</span> 
+            لَهُمْ فِيهَا فَاكِهَةٌ وَلَهُم مَّا يَدَّعُونَ <span class="ayah-number">57</span> 
+            سَلَامٌ قَوْلًا مِّن رَّبِّ رَّحِيمٍ <span class="ayah-number">58</span> 
+            وَامْتَازُوا الْيَوْمَ أَيُّهَا الْمُجْرِمُونَ <span class="ayah-number">59</span> 
+            أَلَمْ أَعْهَدْ إِلَيْكُمْ يَا بَنِي آدَمَ أَن لَّا تَعْبُدُوا الشَّيْطَانَ ۖ إِنَّهُ لَكُمْ عَدُوٌّ مُّبِينٌ <span class="ayah-number">60</span> 
+            وَأَنِ اعْبُدُونِي ۚ هَذَا صِرَاطٌ مُّسْتَقِيمٌ <span class="ayah-number">61</span> 
+            وَلَقَدْ أَضَلَّ مِنكُمْ جِبِلًّا كَثِيرًا ۖ أَفَلَمْ تَكُونُوا تَعْقِلُونَ <span class="ayah-number">62</span> 
+            هَذِهِ جَهَنَّمُ الَّتِي كُنتُمْ تُوعَدُونَ <span class="ayah-number">63</span> 
+            اصْلَوْهَا الْيَوْمَ بِمَا كُنتُمْ تَكْفُرُونَ <span class="ayah-number">64</span> 
+            الْيَوْمَ نَخْتِمُ عَلَىٰ أَفْوَاهِهِمْ وَتُكَلِّمُنَا أَيْدِيهِمْ وَتَشْهَدُ أَرْجُلُهُم بِمَا كَانُوا يَكْسِبُونَ <span class="ayah-number">65</span> 
+            وَلَوْ نَشَاءُ لَطَمَسْنَا عَلَىٰ أَعْيُنِهِمْ فَاسْتَبَقُوا الصِّرَاطَ فَأَنَّىٰ يُبْصِرُونَ <span class="ayah-number">66</span> 
+            وَلَوْ نَشَاءُ لَمَسَخْنَاهُمْ عَلَىٰ مَكَانَتِهِمْ فَمَا اسْتَطَاعُوا مُضِيًّا وَلَا يَرْجِعُونَ <span class="ayah-number">67</span> 
+            وَمَنْ نُعَمِّرْهُ نُنَكِّسْهُ فِي الْخَلْقِ ۖ أَفَلَا يَعْقِلُونَ <span class="ayah-number">68</span> 
+            وَمَا عَلَّمْنَاهُ الشِّعْرَ وَمَا يَنبَغِي لَهُ ۚ إِنْ هُوَ إِلَّا ذِكْرٌ وَقُرْآنٌ مُّبِينٌ <span class="ayah-number">69</span> 
+            لِيُنذِرَ مَن كَانَ حَيًّا وَيَحِقَّ الْقَوْلُ عَلَى الْكَافِرِينَ <span class="ayah-number">70</span> 
+            أَوَلَمْ يَرَوْا أَنَّا خَلَقْنَا لَهُم مِّمَّا عَمِلَتْ أَيْدِينَا أَنْعَامًا فَهُمْ لَهَا مَالِكُونَ <span class="ayah-number">71</span> 
+            وَذَلَّلْنَاهَا لَهُمْ فَمِنْهَا رَكُوبُهُمْ وَمِنْهَا يَأْكُلُونَ <span class="ayah-number">72</span> 
+            وَلَهُمْ فِيهَا مَنَافِعُ وَمَشَارِبُ ۖ أَفَلَا يَشْكُرُونَ <span class="ayah-number">73</span> 
+            وَاتَّخَذُوا مِنْ دُونِ اللَّهِ آلِهَةً لَّعَلَّهُمْ يُنصَرُونَ <span class="ayah-number">74</span> 
+            لَا يَسْتَطِيعُونَ نَصْرَهُمْ وَهُمْ لَهُمْ جُندٌ مُّحْضَرُونَ <span class="ayah-number">75</span> 
+            فَلَا يَحْزُنكَ قَوْلُهُمْ ۘ إِنَّا نَعْلَمُ مَا يُسِرُّونَ وَمَا يُعْلِنُونَ <span class="ayah-number">76</span> 
+            أَوَلَمْ يَرَ الْإِنسَانُ أَنَّا خَلَقْنَاهُ مَن نُّطْفَةٍ فَإِذَا هُوَ خَصِيمٌ مُّبِينٌ <span class="ayah-number">77</span> 
+            وَضَرَبَ لَنَا مَثَلًا وَنَسِيَ خَلْقَهُ ۖ قَالَ مَنْ يُحْيِي الْعِظَامَ وَهِيَ رَمِيمٌ <span class="ayah-number">78</span> 
+            قُلْ يُحْيِيهَا الَّذِي أَنشَأَهَا أَوَّلَ مَرَّةٍ ۖ وَهُوَ بِكُلِّ خَلْقٍ عَلِيمٌ <span class="ayah-number">79</span> 
+            الَّذِي جَعَلَ لَكُم مِّنَ الشَّجَرِ الْأَخْضَرِ نَارًا فَإِذَا أَنتُم مِّنْهُ تُوقِدُونَ <span class="ayah-number">80</span> 
+            أَوَلَيْسَ الَّذِي خَلَقَ السَّمَاوَاتِ وَلَا الْأَرْضَ بِقَادِرٍ عَلَىٰ أَنْ يَخْلُقَ مِثْلَهُمْ ۚ بَلَىٰ وَهُوَ الْخَلَّاقُ الْعَلِيمُ <span class="ayah-number">81</span> 
+            إِنَّمَا أَمْرُهُ إِذَا أَرَادَ شَيْئًا أَنْ يَقُولَ لَهُ كُنْ فَيَكُونُ <span class="ayah-number">82</span> 
+            فَسُبْحَانَ الَّذِي بِيَدِهِ مَلَكُوتُ كُلِّ شَيْءٍ وَإِلَيْهِ تُرْجَعُونَ <span class="ayah-number">83</span>
+        </div>
+    </div>
+
+    <!-- 3. HALAMAN TAHLIL LENGKAP -->
+    <div id="tahlil-page" class="content-page">
+        <div class="top-bar">
+            <div class="page-header-title">Bacaan Tahlil Lengkap</div>
+        </div>
+
+        <div class="arabic-body">
+            <div class="section-title">1. Tawasul / Hadiah Fatihah</div>
+            <div class="trans-note">Kirim fatihah kepada Nabi Muhammad SAW, para sahabat, keluarga, ulama, dan ahli kubur yang dituju.</div>
+            إِلَى حَضْرَةِ النَّبِيِّ الْمُصْطَفَى مُحَمَّدٍ صَلَّى اللَّهُ عَلَيْهِ وَسَلَّمَ وَآلِهِ وَأَصْحَابِهِ أجْمَعِيْنَ، شَيْءٌ لِلَّهِ لَهُمُ الْفَاتِحَةْ...
+
+            <div class="section-title">2. Surat Al-Ikhlas (3x)</div>
+            بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ. قُلْ هُوَ اللَّهُ أَحَدٌ. اللَّهُ الصَّمَدُ. لَمْ يَلِدْ وَلَمْ يُولَدْ. وَلَمْ يَكُن لَّهُ كُفُوًا أَحَدٌ. (3x)
+
+            <div class="section-title">3. Surat Al-Falaq (1x)</div>
+            بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ. قُلْ أَعُوذُ بِرَبِّ الْفَلَقِ. مِن شَرِّ مَا خَلَقَ. وَمِن شَرِّ غَاسِقٍ إِذَا وَقَبَ. وَمِن شَرِّ النَّفَّاثَاتِ فِي الْعُقَدِ. وَمِن شَرِّ حَاسِدٍ إِذَا حَسَدَ.
+
+            <div class="section-title">4. Surat An-Nas (1x)</div>
+            بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ. قُلْ أَعُوذُ بِرَبِّ النَّاسِ. مَلِكِ النَّاسِ. إِلَٰهِ النَّاسِ. مِن شَرِّ الْوَسْوَاسِ الْخَنَّاسِ. الَّذِي يُوَسْوِسُ فِي صُدُورِ النَّاسِ. مِنَ الْجِنَّةِ وَالنَّاسِ.
+
+            <div class="section-title">5. Surat Al-Baqarah Ayat 1-5</div>
+            الم. ذَلِكَ الْكِتَابُ لَا رَيْبَ ۛ فِيهِ ۛ هُدًى لِّلْمُتَّقِينَ. الَّذِينَ يُؤْمِنُونَ بِالْغَيْبِ وَيُقِيمُونَ الصَّلَاةَ وَمِمَّا رَزَقْنَاهُمْ يُنفِقُونَ. وَالَّذِينَ يُؤْمِنُونَ بِمَا أُنزِلَ إِلَيْكَ وَمَا أُنزِلَ مِن قَبْلِكَ وَبِالْآخِرَةِ هُمْ يُوقِنُونَ. أُولَٰئِكَ عَلَىٰ هُدًى مِّن رَّبِّهِمْ ۖ وَأُولَٰئِكَ هُمُ الْمُفْلِحُونَ.
+
+            <div class="section-title">6. Ayat Kursi (Al-Baqarah: 255)</div>
+            اللَّهُ لَا إِلَٰهَ إِلَّا هُوَ الْحَيُّ الْقَيُّومُ ۚ لَا تَأْخُذُهُ سِنَةٌ وَلَا نَوْمٌ ۚ لَّهُ مَا فِي السَّمَاوَاتِ وَمَا فِي الْأَرْضِ ۗ مَن ذَا الَّذِي يَشْفَعُ عِندَهُ إِلَّا بِإِذْنِهِ ۚ يَعْلَمُ مَا بَيْنَ أَيْدِيهِمْ وَمَا خَلْفَهُمْ ۖ وَلَا يُحِيطُونَ بِشَيْءٍ مِّنْ عِلْمِهِ إِلَّا بِمَا شَاءَ ۚ وَسِعَ كُرْسِيُّهُ السَّمَاوَاتِ وَلَا يَئُودُهُ حِفْظُهُمَا ۚ وَهُوَ الْعَلِيُّ الْعَظِيمُ.
+
+            <div class="section-title">7. Kalimat Tahlil (Laa ilaaha illallaah)</div>
+            <div class="trans-note">Dibaca berulang-ulang sesuai kebutuhan (misal 33x atau 100x).</div>
+            لَا إِلَهَ إِلَّا اللَّهُ (حَقًّا حَقًّا)
+            <br><br>
+            لَا إِلَهَ إِلَّا اللَّهُ مُحَمَّدٌ رَسُولُ اللَّهِ صَلَّى اللَّهُ عَلَيْهِ وَسَلَّمَ.
+
+            <div class="section-title">8. Doa Tahlil / Doa Arwah</div>
+            بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ. اَلْحَمْدُ لِلَّهِ رَبِّ الْعَالَمِيْنَ، حَمْدًا يُوَافِي نِعَمَهُ وَيُكَافِئُ مَزِيْدَهُ. يَا رَبَّنَا لَكَ الْحَمْدُ كَمَا يَنْبَغِي لِجَلَالِ وَجْهِكَ الْكَرِيْمِ وَعَظِيْمِ سُلْطَانِكَ. اَللَّهُمَّ تَقَبَّلْ وَأَوْصِلْ ثَوَابَ مَا قَرَأْنَاهُ مِنْ الْقُرْآنِ الْعَظِيْمِ وَمَا هَلْلْنَا وَمَا سَبَّحْنَا وَمَا اسْتَغْفَرْنَا وَمَا صَلَّيْنَا عَلَى سَيِّدِنَا مُحَمَّدٍ صَلَّى اللَّهُ عَلَيْهِ وَسَلَّمَ هَدِيَّةً وَاصِلَةً وَرَحْمَةً نَازِلَةً وَبَرَكَةً شَامِلَةً إِلَى حَضَرَاتِ حَبِيْبِنَا وَشَفِيْعِنَا وَقُرَّةِ أَعْيُنِنَا سَيِّدِنَا وَمَوْلَانَا مُحَمَّدٍ صَلَّى اللَّهُ عَلَيْهِ وَسَلَّمَ... وَإِلَى جَمِيْعِ أَهْلِ الْقُبُوْرِ مِنَ الْمُسْلِمِيْنَ وَالْمُسْلِمَاتِ وَالْمُؤْمِنِيْنَ وَالْمُؤْمِنَاتِ. رَبَّنَا اغْفِرْ لَنَا وَلإِخْوَانِنَا الَّذِيْنَ سَبَقُوْنَا بِالإِيْمَانِ... رَبَّنَا آتِنَا فِي الدُّنْيَا حَسَنَةً وَفِي الْآخِرَةِ حَسَنَةً وَقِنَا عَذَابَ النَّارِ. وَصَلَّى اللَّهُ عَلَى سَيِّدِنَا مُحَمَّدٍ وَعَلَى آلِهِ وَصَحْبِهِ وَسَلَّمَ، وَالْحَمْدُ لِلَّهِ رَبِّ الْعَالَمِيْنَ.
+        </div>
+    </div>
+
+    <script>
+        // Fungsi untuk membuka halaman
+        function openPage(pageId) {
+            document.getElementById('home-page').style.display = 'none';
+            document.querySelectorAll('.content-page').forEach(p => p.style.display = 'none');
+            document.getElementById(pageId).style.display = 'block';
+            window.scrollTo(0, 0);
+
+            // Mendaftarkan state ke history agar tombol Back HP berfungsi menutup halaman
+            history.pushState({ page: pageId }, "", "#" + pageId);
+        }
+
+        // Fungsi untuk kembali ke menu utama
+        function goHome() {
+            document.querySelectorAll('.content-page').forEach(p => p.style.display = 'none');
+            document.getElementById('home-page').style.display = 'block';
+            window.scrollTo(0, 0);
+        }
+
+        // Menangkap event tombol kembali (Back button) bawaan HP
+        window.onpopstate = function(event) {
+            goHome();
+        };
+    </script>
+
+</body>
+</html>
