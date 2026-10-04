@@ -24,11 +24,19 @@ jobs:
       run: |
         cordova create myApp com.yasin.app YasinApp
         cd myApp
-        # Hapus www bawaan cordova dan ganti dengan index.html kita
         rm -rf www/*
         cp ../index.html www/index.html
         
-        # Tambahkan platform Android
+        # Tambahkan plugin icon cordova
+        cordova plugin add cordova-plugin-icon
+        
+        # Salin icon.png dari luar ke folder resources cordova
+        mkdir -p resources
+        cp ../icon.png resources/icon.png
+        
+        # Jalankan perintah icon generator bawaan cordova
+        cordova icon
+        
         cordova platform add android
 
     - name: Build Debug APK
