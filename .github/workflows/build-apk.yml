@@ -27,17 +27,23 @@ jobs:
         rm -rf www/*
         cp ../index.html www/index.html
         
-        # Tambahkan plugin icon cordova
-        cordova plugin add cordova-plugin-icon
-        
-        # Salin icon.png dari luar ke folder resources cordova
-        mkdir -p resources
-        cp ../icon.png resources/icon.png
-        
-        # Jalankan perintah icon generator bawaan cordova
-        cordova icon
-        
+        # Tambahkan platform android terlebih dahulu
         cordova platform add android
+        
+        # Salin icon.png langsung ke folder resolusi ic_launcher android
+        mkdir -p platforms/android/app/src/main/res/mipmap-xxxhdpi/
+        mkdir -p platforms/android/app/src/main/res/mipmap-xxhdpi/
+        mkdir -p platforms/android/app/src/main/res/mipmap-xhdpi/
+        mkdir -p platforms/android/app/src/main/res/mipmap-hdpi/
+        mkdir -p platforms/android/app/src/main/res/mipmap-mdpi/
+        
+        cp ../icon.png platforms/android/app/src/main/res/mipmap-xxxhdpi/ic_launcher.png
+        cp ../icon.png platforms/android/app/src/main/res/mipmap-xxhdpi/ic_launcher.png
+        cp ../icon.png platforms/android/app/src/main/res/mipmap-xhdpi/ic_launcher.png
+        cp ../icon.png platforms/android/app/src/main/res/mipmap-hdpi/ic_launcher.png
+        cp ../icon.png platforms/android/app/src/main/res/mipmap-mdpi/ic_launcher.png
+        cp ../icon.png platforms/android/app/src/main/res/mipmap-xxxhdpi/ic_launcher_round.png
+        cp ../icon.png platforms/android/app/src/main/res/mipmap-xxhdpi/ic_launcher_round.png
 
     - name: Build Debug APK
       run: |
