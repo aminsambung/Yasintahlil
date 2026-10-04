@@ -27,23 +27,26 @@ jobs:
         rm -rf www/*
         cp ../index.html www/index.html
         
-        # Tambahkan platform android terlebih dahulu
+        # Tambahkan platform android
         cordova platform add android
+
+    - name: Override App Icon Manually
+      run: |
+        cd myApp
+        # Timpa semua file ic_launcher bawaan android dengan icon.png kita
+        TARGET_DIR="platforms/android/app/src/main/res"
         
-        # Salin icon.png langsung ke folder resolusi ic_launcher android
-        mkdir -p platforms/android/app/src/main/res/mipmap-xxxhdpi/
-        mkdir -p platforms/android/app/src/main/res/mipmap-xxhdpi/
-        mkdir -p platforms/android/app/src/main/res/mipmap-xhdpi/
-        mkdir -p platforms/android/app/src/main/res/mipmap-hdpi/
-        mkdir -p platforms/android/app/src/main/res/mipmap-mdpi/
+        cp ../icon.png $TARGET_DIR/mipmap-mdpi/ic_launcher.png
+        cp ../icon.png $TARGET_DIR/mipmap-hdpi/ic_launcher.png
+        cp ../icon.png $TARGET_DIR/mipmap-xhdpi/ic_launcher.png
+        cp ../icon.png $TARGET_DIR/mipmap-xxhdpi/ic_launcher.png
+        cp ../icon.png $TARGET_DIR/mipmap-xxxhdpi/ic_launcher.png
         
-        cp ../icon.png platforms/android/app/src/main/res/mipmap-xxxhdpi/ic_launcher.png
-        cp ../icon.png platforms/android/app/src/main/res/mipmap-xxhdpi/ic_launcher.png
-        cp ../icon.png platforms/android/app/src/main/res/mipmap-xhdpi/ic_launcher.png
-        cp ../icon.png platforms/android/app/src/main/res/mipmap-hdpi/ic_launcher.png
-        cp ../icon.png platforms/android/app/src/main/res/mipmap-mdpi/ic_launcher.png
-        cp ../icon.png platforms/android/app/src/main/res/mipmap-xxxhdpi/ic_launcher_round.png
-        cp ../icon.png platforms/android/app/src/main/res/mipmap-xxhdpi/ic_launcher_round.png
+        cp ../icon.png $TARGET_DIR/mipmap-mdpi/ic_launcher_round.png
+        cp ../icon.png $TARGET_DIR/mipmap-hdpi/ic_launcher_round.png
+        cp ../icon.png $TARGET_DIR/mipmap-xhdpi/ic_launcher_round.png
+        cp ../icon.png $TARGET_DIR/mipmap-xxhdpi/ic_launcher_round.png
+        cp ../icon.png $TARGET_DIR/mipmap-xxxhdpi/ic_launcher_round.png
 
     - name: Build Debug APK
       run: |
