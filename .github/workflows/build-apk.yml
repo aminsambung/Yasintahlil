@@ -1,0 +1,43 @@
+name: Build Android APK
+
+on:
+  push:
+    branches: [ main, master ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v3
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '18'
+
+    - name: Install Cordova Globally
+      run: npm install -g cordova
+
+    - name: Create Cordova Project
+      run: |
+        cordova create myApp com.yasin.app YasinApp
+        cd myApp
+        # Hapus www bawaan cordova dan ganti dengan index.html kita
+        rm -rf www/*
+        cp ../index.html www/index.html
+        
+        # Tambahkan platform Android
+        cordova platform add android
+
+    - name: Build Debug APK
+      run: |
+        cd myApp
+        cordova build android --debug
+
+    - name: Upload APK Artifact
+      uses: actions/upload-artifact@v3
+      with:
+        name: Yasin-App-Debug
+        path: myApp/platforms/android/app/build/outputs/apk/debug/app-debug.apk
