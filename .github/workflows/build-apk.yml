@@ -30,13 +30,15 @@ jobs:
         rm -rf www/*
         cp ../index.html www/index.html
         
-        # Salin icon.png dari root repo ke dalam folder myApp
-        cp ../icon.png .
+        # --- PERBAIKAN DI SINI ---
+        # Salin icon.png ke dalam folder resources/ (bukan ke root myApp)
+        cp ../icon.png resources/icon.png
+        # -------------------------
         
         # Tambahkan platform android
         cordova platform add android
         
-        # Generate icon otomatis dari file icon.png
+        # Generate icon otomatis dari file resources/icon.png
         cordova-res android --skip-config --copy
 
     - name: Build Release APK (Unsigned)
@@ -45,13 +47,12 @@ jobs:
         # Perintah build versi release, output berupa APK (bukan AAB)
         cordova build android --release -- --packageType=apk
 
-    # --- BAGIAN BARU: AUTO SIGN APK ---
+    # --- BAGIAN AUTO SIGN APK ---
     - name: Generate Keystore & Sign APK
       run: |
         cd myApp
         
         # 1. Buat Keystore otomatis menggunakan keytool
-        # Ganti password dan alias sesuai keinginanmu (jangan sampai lupa!)
         keytool -genkey -v -keystore my-release-key.jks \
           -keyalg RSA -keysize 2048 -validity 10000 \
           -alias yasin-key \
@@ -60,10 +61,8 @@ jobs:
           -dname "CN=YasinApp, OU=Dev, O=Yasin, L=Jakarta, S=DKI, C=ID"
         
         # 2. Tanda tangani APK menggunakan apksigner
-        # Cari lokasi build-tools terbaru di Android SDK
         BUILD_TOOLS=$(ls -d $ANDROID_HOME/build-tools/* | sort -V | tail -1)
         
-        # Tanda tangani APK
         $BUILD_TOOLS/apksigner sign --ks my-release-key.jks \
           --ks-key-alias yasin-key \
           --ks-pass pass:yasin123 \
