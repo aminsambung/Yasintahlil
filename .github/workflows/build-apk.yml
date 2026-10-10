@@ -20,7 +20,7 @@ jobs:
     - name: Install Cordova Globally
       run: npm install -g cordova
 
-    - name: Create Cordova Project & Setup Icon
+    - name: Create Cordova Project, Setup Icon & Splash
       run: |
         # Ganti "Yasin & Tahlil" dengan nama aplikasi yang kamu mau
         cordova create myApp com.yasin.app "Yasin & Tahlil"
@@ -32,20 +32,25 @@ jobs:
         cordova platform add android
         
         # --- TIMPA MANUAL SEMUA ICON ---
-        TARGET_DIR="platforms/android/app/src/main/res"
+        RES_DIR="platforms/android/app/src/main/res"
         
-        # Timpa semua file ic_launcher.png di folder mipmap
-        find $TARGET_DIR -name "ic_launcher.png" -exec cp ../icon.png {} \;
+        # Timpa semua file ic_launcher.png, ic_launcher_round.png, ic_launcher_foreground.png
+        find $RES_DIR -name "ic_launcher.png" -exec cp ../icon.png {} \;
+        find $RES_DIR -name "ic_launcher_round.png" -exec cp ../icon.png {} \;
+        find $RES_DIR -name "ic_launcher_foreground.png" -exec cp ../icon.png {} \;
         
-        # Timpa juga file ic_launcher_round.png (untuk icon bulat)
-        find $TARGET_DIR -name "ic_launcher_round.png" -exec cp ../icon.png {} \;
+        # Hapus folder adaptive icon agar Android pakai icon PNG biasa
+        rm -rf $RES_DIR/mipmap-anydpi-v26
         
-        # Timpa file ic_launcher_foreground.png (untuk Adaptive Icons di Android modern)
-        find $TARGET_DIR -name "ic_launcher_foreground.png" -exec cp ../icon.png {} \;
-        
-        # --- INI DIA KUNCINYA: HAPUS FOLDER ADAPTIVE ICON ---
-        rm -rf $TARGET_DIR/mipmap-anydpi-v26
-        # ---------------------------------------------------
+        # --- TIMPA MANUAL SPLASH SCREEN ---
+        # Cari semua file splash screen bawaan Cordova dan timpa dengan milik kita
+        find $RES_DIR -type d -name "drawable*" | while read dir; do
+          if [ -f "$dir/splash.png" ]; then
+            cp ../splash.png "$dir/splash.png"
+          fi
+        done
+        echo "Splash screen berhasil ditimpa."
+        # ----------------------------------
 
     - name: Build Release APK (Unsigned)
       run: |
