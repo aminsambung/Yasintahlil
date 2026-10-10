@@ -22,7 +22,7 @@ jobs:
         npm install -g cordova
         npm install -g cordova-res
 
-    - name: Create Cordova Project
+    - name: Create Cordova Project & Generate Icon
       run: |
         # Ganti "Yasin & Tahlil" dengan nama aplikasi yang kamu mau
         cordova create myApp com.yasin.app "Yasin & Tahlil"
@@ -30,23 +30,50 @@ jobs:
         rm -rf www/*
         cp ../index.html www/index.html
         
+        # Salin icon.png dari root repo ke dalam folder myApp
+        cp ../icon.png .
+        
         # Tambahkan platform android
         cordova platform add android
         
-        # Generate icon otomatis dari file icon.png di root repo
-        # (Pastikan file icon.png minimal 1024x1024 px ada di root repository kamu)
+        # Generate icon otomatis dari file icon.png
         cordova-res android --skip-config --copy
 
-    # --- BAGIAN BUILD RELEASE ---
-    - name: Build Release APK
+    - name: Build Release APK (Unsigned)
       run: |
         cd myApp
         # Perintah build versi release, output berupa APK (bukan AAB)
         cordova build android --release -- --packageType=apk
 
-    - name: Upload APK Artifact
+    # --- BAGIAN BARU: AUTO SIGN APK ---
+    - name: Generate Keystore & Sign APK
+      run: |
+        cd myApp
+        
+        # 1. Buat Keystore otomatis menggunakan keytool
+        # Ganti password dan alias sesuai keinginanmu (jangan sampai lupa!)
+        keytool -genkey -v -keystore my-release-key.jks \
+          -keyalg RSA -keysize 2048 -validity 10000 \
+          -alias yasin-key \
+          -storepass yasin123 \
+          -keypass yasin123 \
+          -dname "CN=YasinApp, OU=Dev, O=Yasin, L=Jakarta, S=DKI, C=ID"
+        
+        # 2. Tanda tangani APK menggunakan apksigner
+        # Cari lokasi build-tools terbaru di Android SDK
+        BUILD_TOOLS=$(ls -d $ANDROID_HOME/build-tools/* | sort -V | tail -1)
+        
+        # Tanda tangani APK
+        $BUILD_TOOLS/apksigner sign --ks my-release-key.jks \
+          --ks-key-alias yasin-key \
+          --ks-pass pass:yasin123 \
+          --key-pass pass:yasin123 \
+          --out app-release-signed.apk \
+          platforms/android/app/build/outputs/apk/release/app-release-unsigned.apk
+
+    - name: Upload Signed APK Artifact
       uses: actions/upload-artifact@v4
       with:
-        name: Yasin-App-Release
-        # Path diarahkan ke folder release
-        path: myApp/platforms/android/app/build/outputs/apk/release/app-release-unsigned.apk
+        name: Yasin-App-Release-Signed
+        # Path diarahkan ke APK yang sudah ditandatangani
+        path: myApp/app-release-signed.apk
