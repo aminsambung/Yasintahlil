@@ -41,15 +41,23 @@ jobs:
         
         rm -rf $RES_DIR/mipmap-anydpi-v26
         
-        # --- TIMPA SPLASH SCREEN (SEMUA FOLDER) ---
-        # Loop semua folder drawable* dan timpa file splash.png
+        # --- TIMPA SPLASH SCREEN DI SEMUA FOLDER ---
         for DIR in $RES_DIR/drawable*; do
           if [ -d "$DIR" ]; then
             cp ../splash.png "$DIR/splash.png"
-            echo "Menimpa splash di: $DIR"
           fi
         done
-        # ------------------------------------------
+        
+        # --- EDIT FILE styles.xml UNTUK MENGHAPUS ROBOT ABU-ABU ---
+        STYLES_XML="$RES_DIR/values/styles.xml"
+        if [ -f "$STYLES_XML" ]; then
+          # Hapus baris windowSplashScreenAnimatedIcon yang mengacu ke icon default
+          sed -i '/windowSplashScreenAnimatedIcon/d' $STYLES_XML
+          # Hapus juga windowSplashScreenBackground agar background polos
+          sed -i '/windowSplashScreenBackground/d' $STYLES_XML
+          echo "styles.xml berhasil diupdate."
+        fi
+        # ---------------------------------------------------------
 
     - name: Build Release APK (Unsigned)
       run: |
