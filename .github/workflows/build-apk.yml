@@ -17,44 +17,36 @@ jobs:
       with:
         node-version: '18'
 
-    - name: Install Cordova Globally
-      run: npm install -g cordova
+    - name: Install Cordova & cordova-res Globally
+      run: |
+        npm install -g cordova
+        npm install -g cordova-res
 
     - name: Create Cordova Project
       run: |
-        cordova create myApp com.yasin.app YasinApp
+        # Ganti "Yasin & Tahlil" dengan nama aplikasi yang kamu mau
+        cordova create myApp com.yasin.app "Yasin & Tahlil"
         cd myApp
         rm -rf www/*
         cp ../index.html www/index.html
         
         # Tambahkan platform android
         cordova platform add android
+        
+        # Generate icon otomatis dari file icon.png di root repo
+        # (Pastikan file icon.png minimal 1024x1024 px ada di root repository kamu)
+        cordova-res android --skip-config --copy
 
-    - name: Override App Icon Manually
+    # --- BAGIAN BUILD RELEASE ---
+    - name: Build Release APK
       run: |
         cd myApp
-        # Timpa semua file ic_launcher bawaan android dengan icon.png kita
-        TARGET_DIR="platforms/android/app/src/main/res"
-        
-        cp ../icon.png $TARGET_DIR/mipmap-mdpi/ic_launcher.png
-        cp ../icon.png $TARGET_DIR/mipmap-hdpi/ic_launcher.png
-        cp ../icon.png $TARGET_DIR/mipmap-xhdpi/ic_launcher.png
-        cp ../icon.png $TARGET_DIR/mipmap-xxhdpi/ic_launcher.png
-        cp ../icon.png $TARGET_DIR/mipmap-xxxhdpi/ic_launcher.png
-        
-        cp ../icon.png $TARGET_DIR/mipmap-mdpi/ic_launcher_round.png
-        cp ../icon.png $TARGET_DIR/mipmap-hdpi/ic_launcher_round.png
-        cp ../icon.png $TARGET_DIR/mipmap-xhdpi/ic_launcher_round.png
-        cp ../icon.png $TARGET_DIR/mipmap-xxhdpi/ic_launcher_round.png
-        cp ../icon.png $TARGET_DIR/mipmap-xxxhdpi/ic_launcher_round.png
-
-    - name: Build Debug APK
-      run: |
-        cd myApp
-        cordova build android --debug
+        # Perintah build versi release, output berupa APK (bukan AAB)
+        cordova build android --release -- --packageType=apk
 
     - name: Upload APK Artifact
       uses: actions/upload-artifact@v4
       with:
-        name: Yasin-App-Debug
-        path: myApp/platforms/android/app/build/outputs/apk/debug/app-debug.apk
+        name: Yasin-App-Release
+        # Path diarahkan ke folder release
+        path: myApp/platforms/android/app/build/outputs/apk/release/app-release-unsigned.apk
