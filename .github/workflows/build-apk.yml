@@ -31,26 +31,25 @@ jobs:
         # Tambahkan platform android
         cordova platform add android
         
-        # --- TIMPA MANUAL SEMUA ICON ---
+        # --- SETUP VARIABEL ---
         RES_DIR="platforms/android/app/src/main/res"
         
-        # Timpa semua file ic_launcher.png, ic_launcher_round.png, ic_launcher_foreground.png
+        # --- TIMPA MANUAL ICON ---
         find $RES_DIR -name "ic_launcher.png" -exec cp ../icon.png {} \;
         find $RES_DIR -name "ic_launcher_round.png" -exec cp ../icon.png {} \;
         find $RES_DIR -name "ic_launcher_foreground.png" -exec cp ../icon.png {} \;
         
-        # Hapus folder adaptive icon agar Android pakai icon PNG biasa
         rm -rf $RES_DIR/mipmap-anydpi-v26
         
-        # --- TIMPA MANUAL SPLASH SCREEN ---
-        # Cari semua file splash screen bawaan Cordova dan timpa dengan milik kita
-        find $RES_DIR -type d -name "drawable*" | while read dir; do
-          if [ -f "$dir/splash.png" ]; then
-            cp ../splash.png "$dir/splash.png"
+        # --- TIMPA SPLASH SCREEN (SEMUA FOLDER) ---
+        # Loop semua folder drawable* dan timpa file splash.png
+        for DIR in $RES_DIR/drawable*; do
+          if [ -d "$DIR" ]; then
+            cp ../splash.png "$DIR/splash.png"
+            echo "Menimpa splash di: $DIR"
           fi
         done
-        echo "Splash screen berhasil ditimpa."
-        # ----------------------------------
+        # ------------------------------------------
 
     - name: Build Release APK (Unsigned)
       run: |
