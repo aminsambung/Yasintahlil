@@ -17,49 +17,39 @@ jobs:
       with:
         node-version: '18'
 
-    - name: Install Cordova & cordova-res Globally
-      run: |
-        npm install -g cordova
-        npm install -g cordova-res
+    - name: Install Cordova Globally
+      run: npm install -g cordova
 
-    - name: Create Cordova Project & Generate Icon
+    - name: Create Cordova Project & Setup Icon
       run: |
         # Ganti "Yasin & Tahlil" dengan nama aplikasi yang kamu mau
-        cordova create myApp com.yasin.app2 "Yasin & Tahlil"
+        cordova create myApp com.yasin.app "Yasin & Tahlil"
         cd myApp
         rm -rf www/*
         cp ../index.html www/index.html
         
-        # Buat folder resources
-        mkdir -p resources
-        
-        # Salin icon.png (cari file .png yang BUKAN splash.png)
-        ICON_FILE=$(find .. -maxdepth 1 -name "*.png" ! -name "splash.png" | head -n 1)
-        if [ -z "$ICON_FILE" ]; then
-          echo "ERROR: Tidak ada file icon .png ditemukan di root repo!"
-          exit 1
-        fi
-        cp "$ICON_FILE" resources/icon.png
-        echo "Menggunakan file icon: $ICON_FILE"
-        
-        # Salin splash.png yang sudah kamu siapkan
-        if [ ! -f ../splash.png ]; then
-          echo "ERROR: File splash.png tidak ditemukan di root repo!"
-          exit 1
-        fi
-        cp ../splash.png resources/splash.png
-        echo "Menggunakan file splash: ../splash.png"
-        
         # Tambahkan platform android
         cordova platform add android
         
-        # Generate icon DAN splash screen otomatis dari file yang sudah disiapkan
-        cordova-res android --skip-config --copy
+        # --- TIMPA MANUAL SEMUA ICON ---
+        TARGET_DIR="platforms/android/app/src/main/res"
+        
+        # Timpa semua file ic_launcher.png di folder mipmap
+        find $TARGET_DIR -name "ic_launcher.png" -exec cp ../icon.png {} \;
+        
+        # Timpa juga file ic_launcher_round.png (untuk icon bulat)
+        find $TARGET_DIR -name "ic_launcher_round.png" -exec cp ../icon.png {} \;
+        
+        # Timpa file ic_launcher_foreground.png (untuk Adaptive Icons di Android modern)
+        find $TARGET_DIR -name "ic_launcher_foreground.png" -exec cp ../icon.png {} \;
+        
+        # --- INI DIA KUNCINYA: HAPUS FOLDER ADAPTIVE ICON ---
+        rm -rf $TARGET_DIR/mipmap-anydpi-v26
+        # ---------------------------------------------------
 
     - name: Build Release APK (Unsigned)
       run: |
         cd myApp
-        # Perintah build versi release, output berupa APK (bukan AAB)
         cordova build android --release -- --packageType=apk
 
     # --- BAGIAN AUTO SIGN APK ---
@@ -67,7 +57,6 @@ jobs:
       run: |
         cd myApp
         
-        # 1. Buat Keystore otomatis menggunakan keytool
         keytool -genkey -v -keystore my-release-key.jks \
           -keyalg RSA -keysize 2048 -validity 10000 \
           -alias yasin-key \
@@ -75,7 +64,6 @@ jobs:
           -keypass yasin123 \
           -dname "CN=YasinApp, OU=Dev, O=Yasin, L=Jakarta, S=DKI, C=ID"
         
-        # 2. Tanda tangani APK menggunakan apksigner
         BUILD_TOOLS=$(ls -d $ANDROID_HOME/build-tools/* | sort -V | tail -1)
         
         $BUILD_TOOLS/apksigner sign --ks my-release-key.jks \
@@ -89,5 +77,4 @@ jobs:
       uses: actions/upload-artifact@v4
       with:
         name: Yasin-App-Release-Signed
-        # Path diarahkan ke APK yang sudah ditandatangani
         path: myApp/app-release-signed.apk
