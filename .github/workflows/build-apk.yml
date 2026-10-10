@@ -25,7 +25,7 @@ jobs:
     - name: Create Cordova Project & Generate Icon
       run: |
         # Ganti "Yasin & Tahlil" dengan nama aplikasi yang kamu mau
-        cordova create myApp com.yasin.app "Yasin & Tahlil"
+        cordova create myApp com.yasin.app2 "Yasin & Tahlil"
         cd myApp
         rm -rf www/*
         cp ../index.html www/index.html
