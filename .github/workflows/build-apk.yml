@@ -31,7 +31,8 @@ jobs:
         cp ../index.html www/index.html
         
         # --- PERBAIKAN DI SINI ---
-        # Salin icon.png ke dalam folder resources/ (bukan ke root myApp)
+        # Buat folder resources terlebih dahulu, lalu salin icon.png ke dalamnya
+        mkdir -p resources
         cp ../icon.png resources/icon.png
         # -------------------------
         
