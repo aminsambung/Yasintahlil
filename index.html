@@ -104,7 +104,7 @@
             direction: rtl;
             line-height: 2.3;
             word-spacing: 1px;
-            padding-bottom: 30px;
+            padding-bottom: 70px; /* Ruang ekstra di bawah agar tidak tertutup footer */
         }
 
         .ayah-number {
@@ -144,6 +144,28 @@
             padding: 8px;
             border-radius: 5px;
             border-left: 3px solid #27ae60;
+        }
+
+        /* --- FOOTER CREDIT --- */
+        .credit-footer {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            text-align: center;
+            padding: 12px 10px;
+            font-size: 12px;
+            color: #888;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: rgba(253, 251, 247, 0.95);
+            backdrop-filter: blur(5px);
+            border-top: 1px solid #e0e0e0;
+            box-sizing: border-box;
+            z-index: 100;
+        }
+
+        .credit-footer strong {
+            color: #2c3e50;
         }
     </style>
 </head>
@@ -296,6 +318,11 @@
             <div class="section-title">8. Doa Tahlil / Doa Arwah</div>
             بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ. اَلْحَمْدُ لِلَّهِ رَبِّ الْعَالَمِيْنَ، حَمْدًا يُوَافِي نِعَمَهُ وَيُكَافِئُ مَزِيْدَهُ. يَا رَبَّنَا لَكَ الْحَمْدُ كَمَا يَنْبَغِي لِجَلَالِ وَجْهِكَ الْكَرِيْمِ وَعَظِيْمِ سُلْطَانِكَ. اَللَّهُمَّ تَقَبَّلْ وَأَوْصِلْ ثَوَابَ مَا قَرَأْنَاهُ مِنْ الْقُرْآنِ الْعَظِيْمِ وَمَا هَلْلْنَا وَمَا سَبَّحْنَا وَمَا اسْتَغْفَرْنَا وَمَا صَلَّيْنَا عَلَى سَيِّدِنَا مُحَمَّدٍ صَلَّى اللَّهُ عَلَيْهِ وَسَلَّمَ هَدِيَّةً وَاصِلَةً وَرَحْمَةً نَازِلَةً وَبَرَكَةً شَامِلَةً إِلَى حَضَرَاتِ حَبِيْبِنَا وَشَفِيْعِنَا وَقُرَّةِ أَعْيُنِنَا سَيِّدِنَا وَمَوْلَانَا مُحَمَّدٍ صَلَّى اللَّهُ عَلَيْهِ وَسَلَّمَ... وَإِلَى جَمِيْعِ أَهْلِ الْقُبُوْرِ مِنَ الْمُسْلِمِيْنَ وَالْمُسْلِمَاتِ وَالْمُؤْمِنِيْنَ وَالْمُؤْمِنَاتِ. رَبَّنَا اغْفِرْ لَنَا وَلإِخْوَانِنَا الَّذِيْنَ سَبَقُوْنَا بِالإِيْمَانِ... رَبَّنَا آتِنَا فِي الدُّنْيَا حَسَنَةً وَفِي الْآخِرَةِ حَسَنَةً وَقِنَا عَذَابَ النَّارِ. وَصَلَّى اللَّهُ عَلَى سَيِّدِنَا مُحَمَّدٍ وَعَلَى آلِهِ وَصَحْبِهِ وَسَلَّمَ، وَالْحَمْدُ لِلَّهِ رَبِّ الْعَالَمِيْنَ.
         </div>
+    </div>
+
+    <!-- FOOTER CREDIT -->
+    <div class="credit-footer">
+        Created by: <strong>aminsambung</strong>
     </div>
 
     <script>
