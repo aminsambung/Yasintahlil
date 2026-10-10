@@ -30,17 +30,17 @@ jobs:
         rm -rf www/*
         cp ../index.html www/index.html
         
-        # --- PERBAIKAN DI SINI ---
-        # Buat folder resources terlebih dahulu, lalu salin icon.png ke dalamnya
+        # Buat folder resources, lalu salin icon.png ke dalamnya
         mkdir -p resources
         cp ../icon.png resources/icon.png
-        # -------------------------
         
         # Tambahkan platform android
         cordova platform add android
         
-        # Generate icon otomatis dari file resources/icon.png
-        cordova-res android --skip-config --copy
+        # --- PERBAIKAN DI SINI ---
+        # Generate icon otomatis, dan lewati proses splash screen (--skip-splash)
+        cordova-res android --skip-config --skip-splash --copy
+        # -------------------------
 
     - name: Build Release APK (Unsigned)
       run: |
