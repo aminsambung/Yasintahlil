@@ -30,17 +30,29 @@ jobs:
         rm -rf www/*
         cp ../index.html www/index.html
         
-        # Buat folder resources, lalu salin icon.png ke dalamnya
+        # Buat folder resources
         mkdir -p resources
-        cp ../icon.png resources/icon.png
+        
+        # Cari file .png apapun di root repo, lalu salin ke resources/icon.png
+        ICON_FILE=$(find .. -maxdepth 1 -name "*.png" | head -n 1)
+        if [ -z "$ICON_FILE" ]; then
+          echo "ERROR: Tidak ada file .png ditemukan di root repo!"
+          exit 1
+        fi
+        cp "$ICON_FILE" resources/icon.png
+        echo "Menggunakan file icon: $ICON_FILE"
+        
+        # --- PERBAIKAN DI SINI ---
+        # Buat file splash.png otomatis menggunakan ImageMagick (convert)
+        # Kita buat gambar polos 2732x2732 px dengan warna background aplikasi (#fdfbf7)
+        convert -size 2732x2732 xc:"#fdfbf7" resources/splash.png
+        # -------------------------
         
         # Tambahkan platform android
         cordova platform add android
         
-        # --- PERBAIKAN DI SINI ---
-        # Generate icon otomatis, dan lewati proses splash screen (--skip-splash)
-        cordova-res android --skip-config --skip-splash --copy
-        # -------------------------
+        # Generate icon DAN splash screen otomatis
+        cordova-res android --skip-config --copy
 
     - name: Build Release APK (Unsigned)
       run: |
